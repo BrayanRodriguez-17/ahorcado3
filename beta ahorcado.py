@@ -46,11 +46,11 @@ class Ahorcado:
     def obtener_letra(self):
         while True:
             letra = input("Ingresa una letra: ")
-            if letra:
-                return letra
+            if not letra.isnumeric() and len(letra) == 1:
+                return letra.upper()
             else:
-                print("Por favor, ingresa un carácter.")
-
+                print("Por favor, ingresa una sola letra.")
+                
     def opcion_reiniciar(self):
         reiniciar = input("¿Quieres jugar de nuevo? (Sí/No): ").lower()
         if reiniciar == 'si':
