@@ -3,7 +3,10 @@ class Ahorcado:
         self.palabra_secreta = "Ahorcado"
         self.letras_correctas = []
         self.intentos_restantes = 10 
-        self.muñeco = ["  O", " \|/", "  |", " / \\"]
+        self.muñeco = ["  O", " \|/", "  |", " / \\", " \|/", " / \\"]
+
+    def mostrar_muñeco(self):
+        return "\n".join(self.muñeco[:8 - self.intentos_restantes])
 
     def mostrar_palabra(self):
         resultado = ''
