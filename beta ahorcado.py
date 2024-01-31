@@ -2,8 +2,8 @@ class Ahorcado:
     def __init__(self):
         self.palabra_secreta = "Ahorcado"
         self.letras_correctas = []
-        self.intentos_restantes = 8
-        self.muñeco = [ "  O", " \|/",  "  |", " / \\"]
+        self.intentos_restantes = 10 
+        self.muñeco = ["  O", " \|/", "  |", " / \\"]
 
     def mostrar_palabra(self):
         resultado = ''
@@ -34,13 +34,11 @@ class Ahorcado:
                 self.intentos_restantes -= 1
                 print(f"Incorrecto. Te quedan {self.intentos_restantes} intentos.")
 
-            if all(letra in self.letras_correctas for letra in self.palabra_secreta):
+            if set(self.palabra_secreta).issubset(self.letras_correctas):
                 print("¡Felicidades! ¡Has adivinado la palabra!")
                 break
 
-        if not all(letra in self.letras_correctas for letra in self.palabra_secreta):
-            print(f"¡Lo siento! Se acabaron los intentos. La palabra era '{self.palabra_secreta}'.")
-            print(self.mostrar_muñeco())
+        self.opcion_reiniciar()
 
     def obtener_letra(self):
         while True:
@@ -49,6 +47,14 @@ class Ahorcado:
                 return letra
             else:
                 print("Por favor, ingresa un carácter.")
+
+    def opcion_reiniciar(self):
+        reiniciar = input("¿Quieres jugar de nuevo? (Sí/No): ").lower()
+        if reiniciar == 'si':
+            juego = Ahorcado()
+            juego.jugar()
+        else:
+            print("Gracias por jugar. ¡Hasta luego!")
 
 juego = Ahorcado()
 juego.jugar()
